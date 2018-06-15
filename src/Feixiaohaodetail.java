@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-public  class Feixiaohao implements PageProcessor{
+public  class Feixiaohaodetail implements PageProcessor{
 	public static void main(String[] args) throws SQLException {
 		//Spider.create(new Feixiaohao()).addUrl("https://coinmarketcap.com/zh/all/views/all/").run();
 		list();

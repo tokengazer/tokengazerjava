@@ -202,13 +202,20 @@ public class Mysql {
 		Connection con;
 		int res1=-2;
         //驱动程序名
-        String driver = "com.mysql.jdbc.Driver";
+//        String driver = "com.mysql.jdbc.Driver";
+//        //URL指向要访问的数据库名mydata
+//        String url = "jdbc:mysql://w.rdc.sae.sina.com.cn:3306/app_tokenworm";
+//        //MySQL配置时的用户名
+//        String user = "xowlw2kmk2";
+//        //MySQL配置时的密码
+//        String password = "xwz3045l2wmzxz1zij4j50wm5xx104i42wkxz5l2";
+		String driver = "com.mysql.jdbc.Driver";
         //URL指向要访问的数据库名mydata
-        String url = "jdbc:mysql://w.rdc.sae.sina.com.cn:3306/app_tokenworm";
+        String url = "jdbc:mysql://13.114.134.239:3306/app_tokenworm";
         //MySQL配置时的用户名
-        String user = "xowlw2kmk2";
+        String user = "lybjx";
         //MySQL配置时的密码
-        String password = "xwz3045l2wmzxz1zij4j50wm5xx104i42wkxz5l2";
+        String password = "123456";
         ResultSet rs=null;
         //遍历查询结果集
         try {

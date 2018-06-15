@@ -49,6 +49,7 @@ public class icorating implements PageProcessor{
 		
 		//System.out.println(setcookie.get(0));
         List<String> questionList =  selectable1.xpath("tr/@data-href").all();
+        Project pro=new Project();
         for(Selectable tr1 : selectable1.xpath("//tr").nodes()) {
         	int i=0;
         	String name="";String IcoStartDate="";String Detailurl="";
@@ -57,6 +58,7 @@ public class icorating implements PageProcessor{
         		//.xpath("td/text()").nodes()
         		if(i==1) {
 		        name=td1.xpath("td/text()").get();
+		        pro.setName(name);;
 		        System.out.println(name);
         		}
         		else if(i==2) {
