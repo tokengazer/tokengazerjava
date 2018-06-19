@@ -25,7 +25,7 @@ import org.jsoup.nodes.Element;
 public class icoratingmainpage implements PageProcessor{
 	private Site site = new Site().setRetryTimes(3).setSleepTime(100).setDomain("www.icorating.com");
 	public static void main(String[] args) {
-		Spider.create(new icoratingmainpage()).addUrl("https://icorating.com/ico/casper-api/").run();
+		//Spider.create(new icoratingmainpage()).addUrl("https://icorating.com/ico/casper-api/").run();
 		
 	}
 
@@ -69,10 +69,10 @@ public class icoratingmainpage implements PageProcessor{
         		String whitepaper=tr.xpath("td").links().toString();
         	}
         }
-        //社交部分链接
+        //绀句氦閮ㄥ垎閾炬帴
         Selectable socialhtml=mainpage.xpath("//div[@class=\"uk-child-width-expand uk-grid-small uk-text-center\"]/div");
         List<String> firstsocialhtml=socialhtml.xpath("//a").all();
-        for(String str : firstsocialhtml) {//其内部实质上还是调用了迭代器遍历方式，这种循环方式还有其他限制，不建议使用。
+        for(String str : firstsocialhtml) {//鍏跺唴閮ㄥ疄璐ㄤ笂杩樻槸璋冪敤浜嗚凯浠ｅ櫒閬嶅巻鏂瑰紡锛岃繖绉嶅惊鐜柟寮忚繕鏈夊叾浠栭檺鍒讹紝涓嶅缓璁娇鐢ㄣ��
             if(str.contains("Website")) {
             	String website=str.split("href=\"")[1];
             	website=website.split("\"")[0];
@@ -117,7 +117,7 @@ public class icoratingmainpage implements PageProcessor{
         String[] arr=new String[56];
 //        if(questionList != null && questionList.size() > 1)
 //        {
-//            //i=0是列名称，所以i从1开始
+//            //i=0鏄垪鍚嶇О锛屾墍浠浠�1寮�濮�
 //            for( int i = 1 ; i < questionList.size(); i++)
 //            {
 //            	String[] list = new String[56];

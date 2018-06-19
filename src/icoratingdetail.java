@@ -25,7 +25,7 @@ import org.jsoup.nodes.Element;
 public class icoratingdetail implements PageProcessor{
 	private Site site = new Site().setRetryTimes(3).setSleepTime(100).setDomain("www.icorating.com");
 	public static void main(String[] args) {
-		Spider.create(new icoratingdetail()).addUrl("https://icorating.com/ico/casper-api/details/").run();
+		//Spider.create(new icoratingdetail()).addUrl("https://icorating.com/ico/casper-api/details/").run();
 		
 	}
 
@@ -114,7 +114,7 @@ public class icoratingdetail implements PageProcessor{
         String[] arr=new String[56];
 //        if(questionList != null && questionList.size() > 1)
 //        {
-//            //i=0是列名称，所以i从1开始
+//            //i=0鏄垪鍚嶇О锛屾墍浠浠�1寮�濮�
 //            for( int i = 1 ; i < questionList.size(); i++)
 //            {
 //            	String[] list = new String[56];

@@ -9,7 +9,7 @@ import us.codecraft.webmagic.selector.Selectable;
 
 public class Icodropsdetail implements PageProcessor {
 	public static void main(String[] args) {
-		Spider.create(new Icodropsdetail()).addUrl("https://icodrops.com/omnitude/").run();
+		//Spider.create(new Icodropsdetail()).addUrl("https://icodrops.com/omnitude/").run();
 	}
 	@Override
 	public void process(Page page) {
@@ -19,8 +19,8 @@ public class Icodropsdetail implements PageProcessor {
 		List<String> logohtml=html.xpath("//meta").xpath("[@name='twitter:image']").all();
 		String logo=logohtml.get(1).toString().split("content=\"")[1].split("\"")[0];
 		String datehtml=html.xpath("//div[@class=\"col-12 title-h4\"]").xpath("//h4/text()").toString().replace("Token Sale:", "");
-		String startdate=datehtml.split("–")[0].trim();
-		String enddate=datehtml.split("–")[1].trim();
+		String startdate=datehtml.split("鈥�")[0].trim();
+		String enddate=datehtml.split("鈥�")[1].trim();
 		String description=html.xpath("//div[@class='ico-description']/text()").toString().trim();
 		List<String> lilist=html.xpath("//div[@class='row list']").xpath("//li").all();
 		for(String str:lilist) {

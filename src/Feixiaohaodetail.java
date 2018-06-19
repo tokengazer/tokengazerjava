@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.List;
 public  class Feixiaohaodetail implements PageProcessor{
 	public static void main(String[] args) throws SQLException {
-		Spider.create(new Feixiaohaodetail()).addUrl("https://www.feixiaohao.com/currencies/populous/").run();
+		//Spider.create(new Feixiaohaodetail()).addUrl("https://www.feixiaohao.com/currencies/populous/").run();
 		
 		
 	}
