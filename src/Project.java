@@ -62,7 +62,21 @@ public class Project {
 	public int GithubWatchers;
 	public int Githubforks;
 	public String Github_lastupdatetime;
+	public String getIco_start_time() {
+		return Ico_start_time;
+	}
+	public void setIco_start_time(String ico_start_time) {
+		Ico_start_time = ico_start_time;
+	}
+	public String getIco_end_time() {
+		return Ico_end_time;
+	}
+	public void setIco_end_time(String ico_end_time) {
+		Ico_end_time = ico_end_time;
+	}
 	public String Ico_time;
+	public String Ico_start_time;
+	public String Ico_end_time;
 	public String Ico_Price_Usd;
 	public String Ico_Price_Eth;
 	public String ICO_Distribution_Ratio;

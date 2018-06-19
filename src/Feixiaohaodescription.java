@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-public  class Feixiaohaodetail implements PageProcessor{
+public  class Feixiaohaodescription implements PageProcessor{
 	public static void main(String[] args) throws SQLException {
-		Spider.create(new Feixiaohaodetail()).addUrl("https://www.feixiaohao.com/currencies/populous/").run();
+		Spider.create(new Feixiaohaodescription()).addUrl("https://www.feixiaohao.com/coindetails/populous/").run();
 		
 		
 	}
@@ -43,81 +43,16 @@ public  class Feixiaohaodetail implements PageProcessor{
         //MySQL閰嶇疆鏃剁殑瀵嗙爜
         String password = "123456";
         String insertsql="";
-        String zongfaxingliang="0";
+        String description="";
         Project pro=new Project();
 		if(!html.xpath("title").match()) {
 			String url1=html.xpath("script").toString().split("\"")[1].split("\"")[0];
-			//System.out.println(url1);
-			Spider.create(new Feixiaohaodetail()).addUrl(url1);
+			System.out.println(url1);
+			Spider.create(new Feixiaohaodescription()).addUrl(url1);
 		}else {
-			List<String> Lilist=html.xpath("//li").all();
-			for(String str:Lilist) {
-				//System.out.println(str);
-				if(str.contains("中文名")) {
-					String ZHName=str.toString().split("<span class=\"value\">")[1].split("</span>")[0];
-					pro.setZHname(ZHName);
-				}else if(str.contains("上架交易所")) {
-					String Alreadyon=str.toString().split("<span class=\"value\">")[1].split("</span>")[0].replace("家", "");
-					pro.setAlreadyon(Alreadyon);
-				}else if(str.contains("白皮书")) {
-					String Whitepaper=str.toString().split("<span class=\"value\">")[1].split("</span>")[0].split("\"")[1].split("\"")[0];
-					pro.setWhitepaper(Whitepaper);
-				}else if(str.contains("相关概念")) {
-					String industry=str.toString().split("<span class=\"value\">")[1].split("</span>")[0].split("\"")[1].split("\"")[0];
-					pro.setIndustry(industry);
-				}
-			}
-			Selectable iCOtable=html.xpath("//table[@class='iCOtable']");
-			List<String> thlist=iCOtable.xpath("//th").all();
-			List<String> tdlist=iCOtable.xpath("//td").all();
-			int i=0;
-			int j=0;
-			List<Selectable> nodeslist=html.xpath("//div[@class='cell']").nodes();
-			for(Selectable cells:nodeslist) {
-				List<String> titlist=cells.xpath("//div[@class='tit']").all();
-				List<String> valuelist=cells.xpath("//div[@class='value']").all();
-				int k=0;
-				for(String tit:titlist) {
-					if(tit.contains("总发行量")) {
-						zongfaxingliang=valuelist.get(k+1).toString().split("<div class=\"value\">")[1].split("</div>")[0].split(" ")[1].toString().replaceAll(",", "");//.replaceAll("<div class=\"value\">", "").replace("<div", "").replaceAll("\"","");
-					//System.out.println(zongfaxingliang);System.out.println(1);
-					}
-				}
-				k++;
-			}
-			//System.out.println(nodeslist);
-			for(String str:thlist) {
-				if(str.contains("ICO总量")) {
-					String ico_total_amount=tdlist.get(i).toString().replace("<td>", "").replace("</td>", "");
-					pro.setICO_Total_Amount(ico_total_amount);
-					//System.out.println(ico_total_amount);
-					DecimalFormat df=new DecimalFormat("0.00");
-					int a = Integer.parseInt(ico_total_amount);
-					System.out.println(zongfaxingliang);
-					int b = Integer.parseInt(zongfaxingliang);
-					String presale=df.format((float)b/a) ;
-					System.out.println(presale);
-					pro.setPresales(presale);
-				}
-				else if(str.contains("众筹起始时间")) {
-					String ico_start_time=tdlist.get(i).toString().replace("<td>", "").replace("</td>", "");
-					System.out.println(ico_start_time);
-					pro.setIco_start_time(ico_start_time);
-				}
-				else if(str.contains("众筹结束时间")) {
-					String ico_end_time=tdlist.get(i).toString().replace("<td>", "").replace("</td>", "");
-					System.out.println(ico_end_time);
-					pro.setIco_end_time(ico_end_time);
-				}
-				else if(str.contains("众筹均价")) {
-					String ico_price=tdlist.get(i).toString().replace("<td>", "").replace("</td>", "").replace("$", "").split("(")[0];
-					System.out.println(ico_price);
-					pro.setIco_Price_Usd(ico_price);
-				}
-				i++;
-			}
-			
-			
+			String Html=html.xpath("//div[@class='artBox']").xpath("//p").all().get(1).replace("<p>", "").replace("</p>", "").toString();
+			System.out.println(Html);
+			new Project().setDescription(Html);
 		}
 	}
 
