@@ -1,5 +1,6 @@
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.Page;
+import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.scheduler.BloomFilterDuplicateRemover;
@@ -47,9 +48,15 @@ public class Icodrops implements PageProcessor{
 		//System.out.println(page.getHeaders());
 		Selectable selectable=html.xpath("//div[@class='category-desk justify-content-center'");
 		List<String> links=selectable.links().all();
+		ArrayList<Request> list=new ArrayList<Request>();
        for(String url:links) {
-    	   Spider.create(new Icodropsdetail()).addUrl(url).run();
+    	   Request request=new Request(url);
+    	   list.add(request);
+    	   //Spider.create(new Icodropsdetail()).addUrl(url).run();
        }
+       Request[] strings = new Request[list.size()];
+       list.toArray(strings);
+       Spider.create(new Icodropsdetail()).addRequest(strings).thread(10).run();
 	}
 
 	@Override

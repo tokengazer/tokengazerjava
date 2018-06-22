@@ -39,32 +39,32 @@ public class gettelegramfans implements PageProcessor{
 		
 	}
 	public static void list() {
-		String sql="select id,telegramurl from ico_Analysis where telegramurl<>'' and id>17784";
+		String sql="select id,telegramurl from ico_Analysis where telegramurl<>''";
 		Mysql ms=new Mysql();
 		Connection con;
 		int res1=-2;
-        //驱动程序名
+        //椹卞姩绋嬪簭鍚�
         String driver = "com.mysql.jdbc.Driver";
-        //URL指向要访问的数据库名mydata
+        //URL鎸囧悜瑕佽闂殑鏁版嵁搴撳悕mydata
         String url = "jdbc:mysql://13.114.134.239:3306/app_tokenworm";
-        //MySQL配置时的用户名
+        //MySQL閰嶇疆鏃剁殑鐢ㄦ埛鍚�
         String user = "lybjx";
-        //MySQL配置时的密码
+        //MySQL閰嶇疆鏃剁殑瀵嗙爜
         String password = "123456";
         ResultSet rs=null;
-        //遍历查询结果集
+        //閬嶅巻鏌ヨ缁撴灉闆�
         try {
-            //加载驱动程序
+            //鍔犺浇椹卞姩绋嬪簭
             Class.forName(driver);
-            //1.getConnection()方法，连接MySQL数据库！！
+            //1.getConnection()鏂规硶锛岃繛鎺ySQL鏁版嵁搴擄紒锛�
             con = DriverManager.getConnection(url,user,password);
             if(!con.isClosed())
                 System.out.println("Succeeded connecting to the Database!");
-            //2.创建statement类对象，用来执行SQL语句！！
+            //2.鍒涘缓statement绫诲璞★紝鐢ㄦ潵鎵цSQL璇彞锛侊紒
             Statement statement = con.createStatement();
-            rs = statement.executeQuery( sql );// sql为待执行的sql
+            rs = statement.executeQuery( sql );// sql涓哄緟鎵ц鐨剆ql
             ArrayList<Request> list=new ArrayList<Request>();
-            while(rs.next()){//遍历结果集
+            while(rs.next()){//閬嶅巻缁撴灉闆�
             	Request request = new Request(rs.getString("telegramurl"));
             	list.add(request);   
             }
@@ -76,18 +76,18 @@ public class gettelegramfans implements PageProcessor{
             con.close();
             
         } catch(ClassNotFoundException e) {   
-            //数据库驱动类异常处理
+            //鏁版嵁搴撻┍鍔ㄧ被寮傚父澶勭悊
             System.out.println("Sorry,can`t find the Driver!");   
             e.printStackTrace();   
             } catch(SQLException e) {
-            //数据库连接失败异常处理
+            //鏁版嵁搴撹繛鎺ュけ璐ュ紓甯稿鐞�
             e.printStackTrace();  
             }catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
             rs=null;
         }finally{
-            System.out.println("数据库数据成功获取！！");
+            System.out.println("鏁版嵁搴撴暟鎹垚鍔熻幏鍙栵紒锛�");
             
         }
         

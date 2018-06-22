@@ -40,39 +40,41 @@ public class getgithuburl implements PageProcessor{
 		
 	}
 	public static void list() {
-		String sql="select id, Github_url from ico_Analysis where Github_url <> '' and Github_url <>'https://github.com/'";
-		String[]access_tokenlist= {"768d6cb5b16bc0c36b8e1e1541ea40d49871b525","9efccc763ea27c04585dd46711f62c5f45514035","7e5912faf6b29a5bd5ebd110e94760564c1998ec","494c04594fcf20b35e10f3f7346c40ff66dc6ddf","f0e0592524d4f6b20dd52423599a77c4ea6348eb","e27a40ee39b2b37d5d2b310048c26313473eb296","9958e1f4c805d24f330f23e06689fc869258444","939096382d431ebf5823b827a95f26e7a38b3a85","3136dad03299940abee5612c83cccf9897f05078","c82798d338965fbe78a9566888f2506467d2c04e","76be69c01eb9d3a882ec590ced8131797ecad191","954cbd68a872fedf20da7e08a536847947d3f8c0","5d26baeca9c681c7994679167f98fc169fca0b80","4b1d2407a52e7647a962e9a43661be79d84dc194","5e8d5cf0127c10d7939ff29f01229220c1ebdd7f","c87d0f17b5147cc5e907804f54c0384d909a3679","325dbe244e0939bbf09f0747a10d3c917fe7e529","811f4f94982dd895580022f5dcbaa4698d330205","1e16751e8dddd142f2ec058e9822522b796a2b30","4b956608b6a8e715450d250d0f11cfea162c4d37","6edcd5c07599ac5223ff063fc46ba4d092e47989","8ac1cc4acb41abb8e3b4b7bf2b7402ef9bd29363","70961f148c9570aec960b36b4153384c0cb55022","0295f21e4a7adc397ffec1fd1dbf9e35477a40b8","7a89cb7c701ad19720fda0defb6b17ae24379fec"};
+		String ids="1175,1176,1177,1178,1179,1180,1181,1183,1186,1190,1191,1192,5760,5761,5762,5763,5764,5765,5766,5770,5771,8115,8117,8152,8153,8154,16288,16289,16328,16329,16330,16478,16479,16480,16538,16564,16571,16579,16587,16590,16591,16592,16593,16594,16595,16596,16597,16598,16599,16600,16601,16602,16603,16604,16605,16606,16607,16608,16609,16610,16611,16612,16613,16614,16615,16616,16617,16618,16619,16620,16621,16622,16623,16624,16625,16626,16627,16628,16629,16630,16631,16632,16633,16634,16635,16636,16637,16638,16639,16640,16641,16642,16643,16644,16645,16646,16647,16648,16649,16650,16651,16652,16653,16654,16655,16656,16657,16658,16659,16660,16661,16662,16663,16664,16665,16666,16667,16668,16669,16670,16671,16672,16673,16674,16675,16676,16677,16678,16679,16680,16681,16682,16683,16684,16685,16686,16687,16688,16689,16690,16691,16692,16693,16694,16695,16696,16697,16698,16699,16700,16701,16702,16703,16704,16705,16706,16707,16708,16709,16710,16711,16712,16713,16714,16715,16716,16717,16718,16719,16720,16721,16722,16723,16724,16725,16726,16727,16728,16729,16730,16731,16732,16733,16734,16735,16736,16737,16738,16739,16740,16741,16742,16743,16744,16745,16746,16747,16750,16755,16784,16819,16821,16825,16827,16841,16853,16865,16882,16964,16979,17313,17327,17375,17398,17459,17461,17559,17592,17643,17648,17657,17785,17818,17828,17830,17846,17878,17929,18012,18036,18102,18143,18153,18256,18298,18309,18314,18344,18350,18358,18456,18477,18515,18570,18588,18604,18610,18623,18636,5773,18451,18656,18854,18898,18950,18469";
+
+		String sql="select id, Github_url from ico_Analysis where Github_url <> '' and Github_url <>'https://github.com/' and id in("+ids+")";
+		String[]access_tokenlist= {"afc61616719a89cbdbed28cc32e93c9d9a93e6bf","87683e1fa2f3e8ccff66d61193b948a858135ea6","237919e8c6d885d559e4eca11de1f17877e90ea7","1d645462cc4205d099a6a09a03f1a35f9a40aacd","dca768ed31563a2de80e61b5ce224972c94d967a","d3c8d7c2c86d4687acbdc3deea96c5e63a87e280","fcedcd7967bd57fb1694866e26eb3de915e338a7","807ac8745da0c11b8d4faec02a3d6ef47612b8d7","643b845668a201695235fa2b8440a22620ca0869","deea6e0052c10297e3099868cca476f0d2b00231","2a2ed47aeef3e2754246eb89fb9d1d6a4dbba897","df196a1db556073db536b7d5142b1afd0d39fa0d","439849ac657d929dc79f3f9b5942a97d1dc6d46f","778d9a79c04f4755b279332859c4db244b10c97e","c2fbde240f1032c0cc361137cedbebee815d8e88","0976a41854430be48f2ac8267b6b6db400d43306","921b21fde0d1c635488f3e73ab608dc10cdf7669","7e74b3905cd24fc19e4ca06376cf12173333bbdb","923b5ed4340fca2e11bc10e1c53f18a8f339fc4e","225867cc8489a5b289daec388f2efef38a26c592","fdef8ec4e59f61238adb260b9e823dd03675ad2a","216063a05f488bf109411cf725421019fe773513","1633b743ccf24bdfcbe21c73e3299ae538fba556","03381daf9a4ce96a9ddfd4529680eedf6a166b03","2cb8bde0bdaeb0a5077e404f66f824159a9ba361"};
 
 		Mysql ms=new Mysql();
 		Connection con;
 		int res1=-2;
-        //驱动程序名
+        //椹卞姩绋嬪簭鍚�
         String driver = "com.mysql.jdbc.Driver";
-        //URL指向要访问的数据库名mydata
-        String url = "jdbc:mysql://13.114.134.239:3306/app_tokenworm";
-        //MySQL配置时的用户名
+        //URL鎸囧悜瑕佽闂殑鏁版嵁搴撳悕mydata
+        String url = "jdbc:mysql://rm-bp1kq68i5h4493twvzo.mysql.rds.aliyuncs.com:3306/app_tokenworm";
+        //MySQL閰嶇疆鏃剁殑鐢ㄦ埛鍚�
         String user = "lybjx";
-        //MySQL配置时的密码
-        String password = "123456";
+        //MySQL閰嶇疆鏃剁殑瀵嗙爜
+        String password = "Lybjx54709488dh";
         ResultSet rs=null;
-        //遍历查询结果集
+        //閬嶅巻鏌ヨ缁撴灉闆�
         try {
         	
-            //加载驱动程序
+            //鍔犺浇椹卞姩绋嬪簭
             Class.forName(driver);
-            //1.getConnection()方法，连接MySQL数据库！！
+            //1.getConnection()鏂规硶锛岃繛鎺ySQL鏁版嵁搴擄紒锛�
             con = DriverManager.getConnection(url,user,password);
-            if(!con.isClosed())
-                System.out.println("Succeeded connecting to the Database!");
-            //2.创建statement类对象，用来执行SQL语句！！
+            if(!con.isClosed()) {}
+                //System.out.println("Succeeded connecting to the Database!");
+            //2.鍒涘缓statement绫诲璞★紝鐢ㄦ潵鎵цSQL璇彞锛侊紒
             
             Statement statement = con.createStatement();
-            rs = statement.executeQuery( sql );// sql为待执行的sql
+            rs = statement.executeQuery( sql );// sql涓哄緟鎵ц鐨剆ql
             ArrayList<Request> list=new ArrayList<Request>();
-            while(rs.next()){//遍历结果集
+            while(rs.next()){//閬嶅巻缁撴灉闆�
             	int round=new Random().nextInt(25);  
             	String token=access_tokenlist[round];
-            	System.out.println(token);
+            	//System.out.println(token);
             	String Github_url=rs.getString("Github_url").replace(" ", "").replace("http://github.com/", "https://github.com/");
             	String baseurl=Github_url.replace("https://github.com/", "");//str_replace(",","",$list[$k]['Github_url']);
             	if(baseurl.substring(baseurl.length()-1,baseurl.length())==",") {
@@ -94,18 +96,18 @@ public class getgithuburl implements PageProcessor{
             con.close();
             
         } catch(ClassNotFoundException e) {   
-            //数据库驱动类异常处理
+            //鏁版嵁搴撻┍鍔ㄧ被寮傚父澶勭悊
             System.out.println("Sorry,can`t find the Driver!");   
             e.printStackTrace();   
             } catch(SQLException e) {
-            //数据库连接失败异常处理
+            //鏁版嵁搴撹繛鎺ュけ璐ュ紓甯稿鐞�
             e.printStackTrace();  
             }catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
             rs=null;
         }finally{
-            System.out.println("数据库数据成功获取！！");
+            System.out.println("鏁版嵁搴撴暟鎹垚鍔熻幏鍙栵紒锛�");
             
         }
         
@@ -124,18 +126,7 @@ public class getgithuburl implements PageProcessor{
 
 	@Override
 	public void process(Page page) {
-		Request request=page.getRequest();
-		String url=request.getUrl();
-		// TODO Auto-generated method stub
-		Html html = page.getHtml();
-		Selectable selectable=html.xpath("//div[@class='tgme_page_extra']/text()");
-		String fans=selectable.toString();
-		fans=fans.replace("members", "").replaceAll(" ", "");
-		int fancount=Integer.valueOf(fans);
-		String sql ="update ico_Analysis set Telegram_fans="+fancount+" where telegramurl='"+url+"'";
-		Mysql ms=new Mysql();
-		System.out.println(ms.Excutesql(sql,"update"));
-		System.out.println(sql);
+		
 		
 	}
 

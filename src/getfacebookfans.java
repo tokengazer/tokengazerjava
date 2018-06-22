@@ -51,7 +51,7 @@ public class getfacebookfans implements PageProcessor{
 		//System.out.println(page.getHeaders());
 		Selectable selectable=html.xpath("//div[@id='pages_side_column']").xpath("//div[@class='_1xnd']");
 		List<String> list=selectable.xpath("//div[@class='_2pi9 _2pi2']").all();
-		String tmp1=list.get(1).split("<div class=\"_4bl9\">")[1].split("<div>")[1].split("</div>")[0].replace(" 浣嶇敤鎴峰叧娉ㄤ簡", "").replaceAll(",", "");
+		String tmp1=list.get(1).split("<div class=\"_4bl9\">")[1].split("<div>")[1].split("</div>")[0].replace(" 位用户关注了", "").replaceAll(",", "");
 		tmp1=tmp1.trim();
 		System.out.println(url);
 		String sql="update ico_Analysis set Facebook_Friends="+tmp1+" where facebookurl='"+url+"';";
