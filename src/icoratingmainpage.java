@@ -42,31 +42,40 @@ public class icoratingmainpage implements PageProcessor{
 		//System.out.println(setcookie);
 		
 		//System.out.println(setcookie.get(0));
+		Project pro=new Project();
         Selectable mainpage =  html.xpath("//div[@class='mt30']");
         Selectable imghtml=mainpage.xpath("//div[@class='img']");
         String logo=imghtml.regex("/cache/logos/([a-zA-z0-9]{40})").toString();
         if(logo!=null) {
         	logo="https://icorating.com/cache/logos/"+logo+"-151x151.jpeg";
+        	pro.setLogo(logo);
         	System.out.println(logo);
         }
         String namehtml=mainpage.xpath("h1/text()").toString();
         Selectable trlist=mainpage.xpath("//tbody");
+        pro.setName(namehtml);
         
         for(Selectable tr:trlist.xpath("//tr").nodes()) {
         	int i=0;
         	if(tr.xpath("td/text()").nodes().get(0).toString().contains("ICO date")) {
         		String icodate=tr.xpath("td/text()").nodes().get(1).toString();
+        		
         	}else if(tr.xpath("td/text()").nodes().get(0).toString().contains("Product Type")) {
         		String Producttype=tr.xpath("td/text()").nodes().get(1).toString();
+        		
         	}else if(tr.xpath("td/text()").nodes().get(0).toString().contains("Industry")) {
         		String Industry=tr.xpath("td/text()").nodes().get(1).toString();
+        		pro.setIndustry(Industry);
         	}else if(tr.xpath("td/text()").nodes().get(0).toString().contains("Description")) {
         		String Description=tr.xpath("td/text()").nodes().get(1).toString();
+        		pro.setDescription(Description);
         	}
         	else if(tr.xpath("td/text()").nodes().get(0).toString().contains("Website")) {
         		String website=tr.xpath("td").links().toString();
+        		pro.setWebsite(website);
         	}else if(tr.xpath("td/text()").nodes().get(0).toString().contains("Whitepaper")) {
         		String whitepaper=tr.xpath("td").links().toString();
+        		pro.setWhitepaper(whitepaper);
         	}
         }
         //绀句氦閮ㄥ垎閾炬帴
@@ -76,23 +85,28 @@ public class icoratingmainpage implements PageProcessor{
             if(str.contains("Website")) {
             	String website=str.split("href=\"")[1];
             	website=website.split("\"")[0];
+            	pro.setWebsite(website);
             	System.out.println(website);
             }else if(str.contains("Twitter")) {
             	String Twitterurl=str.split("href=\"")[1];
             	Twitterurl=Twitterurl.split("\"")[0];
+            	pro.setTwitterurl(Twitterurl);
             	System.out.println(Twitterurl);
             }else if(str.contains("Facebook")) {
             	String Facebookurl=str.split("href=\"")[1];
             	Facebookurl=Facebookurl.split("\"")[0];
             	System.out.println(Facebookurl);
+            	pro.setFacebookurl(Facebookurl);
             }else if(str.contains("Telegram")) {
             	String Telegramurl=str.split("href=\"")[1];
             	Telegramurl=Telegramurl.split("\"")[0];
             	System.out.println(Telegramurl);
+            	pro.setTelegramurl(Telegramurl);
             }else if(str.contains("Github")) {
             	String Githuburl=str.split("href=\"")[1];
             	Githuburl=Githuburl.split("\"")[0];
             	System.out.println(Githuburl);
+            	pro.setGithuburl(Githuburl);
             }
         }
         System.out.println(firstsocialhtml);
@@ -101,6 +115,7 @@ public class icoratingmainpage implements PageProcessor{
         	String[] name1=name.split("\\(");
         	name=name1[0].trim();
         	String ticker=name1[1].split("\\)")[0].trim();
+        	pro.setTicker(ticker);
     		/*String sql="select count(*) from webmagic_ico_Analysis where name='"+name+"'";
     		int re=ms.Runsql(sql);
     		if(re==0) {

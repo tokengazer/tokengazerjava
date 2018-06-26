@@ -45,44 +45,59 @@ public class icoratingdetail implements PageProcessor{
         Selectable mainpage =  html.xpath("//div[@class='uk-section switcher-block-unchangeable']");
         List<String> trlist= mainpage.xpath("tr").all();
         //System.out.println(trlist);
-        
+        Project pro=new Project();
         for(String tr:trlist) {
         	int i=0;
         	if(tr.contains("Pre-ICO start date")) {
         		String Prestartdate=(tr.replace("<td>Pre-ICO start date:</td>", "").split("<td>")[1]).split("</td>")[0];
+        		pro.setIco_start_time(Prestartdate);
         	}else if(tr.contains("Pre-ICO end date")) {
         		String Preenddate=(tr.replace("<td>Pre-ICO end date:</td>", "").split("<td>")[1]).split("</td>")[0];
+        		pro.setIco_end_time(Preenddate);
         	}else if(tr.contains("Pre-ICO Token Supply:")) {
         		String Preicotokensupply=(tr.replace("<td>Pre-ICO Token Supply:</td>", "").split("<td>")[1]).split("</td>")[0];
+        		
         	}else if(tr.contains("ICO start date")) {
         		String Icostartdate=(tr.replace("<td>ICO start date:</td>", "").split("<td>")[1]).split("</td>")[0];
+        		pro.setIco_start_time(Icostartdate);
         	}else if(tr.contains("ICO end date")) {
         		String Icoenddate=(tr.replace("<td>ICO end date:</td>", "").split("<td>")[1]).split("</td>")[0];
+        		pro.setIco_end_time(Icoenddate);
         	}else if(tr.contains("ICO Token Supply")) {
         		String Icotokensupply=(tr.replace("<td>ICO Token Supply:</td>", "").split("<td>")[1]).split("</td>")[0];
+        		pro.setICO_Total_Amount(Icotokensupply);
         	}else if(tr.contains("Soft cap")) {
         		String Softcap=(tr.replace("<td>Soft cap:</td>", "").split("<td>")[1]).split("</td>")[0];
         	}else if(tr.contains("Hard cap")) {
         		String Hardcap=(tr.replace("<td>Hard cap:</td>", "").split("<td>")[1]).split("</td>")[0];
+        		pro.setICO_HardCap(Hardcap);
         	}else if(tr.contains("Type")) {
-        		String Softcap=(tr.replace("<td>Type:</td>", "").split("<td>")[1]).split("</td>")[0];
+        		String Type=(tr.replace("<td>Type:</td>", "").split("<td>")[1]).split("</td>")[0];
+        		pro.setPlatform(Type);
         	}else if(tr.contains("Hard cap")) {
         		String Softcap=(tr.replace("<td>Hard cap:</td>", "").split("<td>")[1]).split("</td>")[0];
         	}else if(tr.contains("Token Standard")) {
         		String Tokenstandard=(tr.replace("<td>Token Standard:</td>", "").split("<td>")[1]).split("</td>")[0];
+        		pro.setTokenStandard(Tokenstandard);
         	}else if(tr.contains("Additional Token Emission")) {
         		String AdditionalTokenEmission=(tr.replace("<td>Additional Token Emission:</td>", "").split("<td>")[1]).split("</td>")[0];
+        		pro.setAdditionalTokenEmission(AdditionalTokenEmission);
         	}else if(tr.contains("Token price in USD")) {
         		String TokenpriceinUSD=(tr.replace("<td>Token price in USD:</td>", "").split("<td>")[1]).split("</td>")[0];
+        		pro.setIco_Price_Usd(TokenpriceinUSD);
         	}else if(tr.contains("Accepted Currencies")) {
         		String AcceptedCurrencies=(tr.replace("<td>Accepted Currencies:</td>", "").split("<td>")[1]).split("</td>")[0];
+        		pro.setAcceptedCurrencies(AcceptedCurrencies);
         	}else if(tr.contains("Bonus Program")) {
         		String BonusProgram=(tr.replace("<td>Bonus Program:</td>", "").split("<td>")[1]).split("</td>")[0];
+        		
         	}else if(tr.contains("Token distribution")) {
         		String Tokendistribution=(tr.replace("<td>Token distribution:</td>", "").split("<td>")[1]).split("</td>")[0].replaceAll("<p .*?>", "\r\n").replaceAll("<br\\s*/?>", "\r\n").replaceAll("<p>", "").replaceAll("</p>", "");
         		System.out.println(Tokendistribution);
-            	}else if(tr.contains("ICO Platform")) {
+        		pro.setTokenDistribution(Tokendistribution);
+            }else if(tr.contains("ICO Platform")) {
         		String ICOPlatform=(tr.replace("<td>ICO Platform:</td>", "").split("<td>")[1]).split("</td>")[0];
+        		pro.setPlatform(ICOPlatform);
         	}else if(tr.contains("Bounty")) {
         		String Bounty=(tr.replace("<td>Bounty:</td>", "").split("<td>")[1]).split("</td>")[0];
         	}else if(tr.contains("Social Media")) {

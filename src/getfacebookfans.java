@@ -47,18 +47,36 @@ public class getfacebookfans implements PageProcessor{
 		// TODO Auto-generated method stub
 		Html html = page.getHtml();
 		//System.out.println(html);
-		
+		Connection con=null;
 		//System.out.println(page.getHeaders());
 		Selectable selectable=html.xpath("//div[@id='pages_side_column']").xpath("//div[@class='_1xnd']");
 		List<String> list=selectable.xpath("//div[@class='_2pi9 _2pi2']").all();
-		String tmp1=list.get(1).split("<div class=\"_4bl9\">")[1].split("<div>")[1].split("</div>")[0].replace(" λ�û���ע��", "").replaceAll(",", "");
+		String tmp1=list.get(1).split("<div class=\"_4bl9\">")[1].split("<div>")[1].split("</div>")[0].replace(" 位用户关注了", "").replaceAll(",", "");
 		tmp1=tmp1.trim();
 		System.out.println(url);
 		String sql="update ico_Analysis set Facebook_Friends="+tmp1+" where facebookurl='"+url+"';";
 		Mysql ms=new Mysql();
-		System.out.println(sql);
-		System.out.println(ms.Excutesql(sql,"update"));
-		System.out.println(tmp1);
+		 String driver = "com.mysql.jdbc.Driver";
+	        //URL鎸囧悜瑕佽闂殑鏁版嵁搴撳悕mydata
+	        String sqlurl = "jdbc:mysql://rm-bp1kq68i5h4493twvzo.mysql.rds.aliyuncs.com:3306/app_tokenworm";
+	        //MySQL閰嶇疆鏃剁殑鐢ㄦ埛鍚�
+	        String user = "lybjx";
+	        //MySQL閰嶇疆鏃剁殑瀵嗙爜
+	        String password = "Lybjx54709488dh";
+	        try {
+				con=DriverManager.getConnection(sqlurl, user, password);
+				 Statement stat=con.createStatement();
+			        int re=stat.executeUpdate(sql);
+			        ResultSet rs=null;
+				System.out.println(sql);
+				System.out.println(re);
+				System.out.println(tmp1);
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	       
 		/*String fans=selectable.toString();
 		fans=fans.replace("members", "").replaceAll(" ", "");
 		int fancount=Integer.valueOf(fans);
@@ -72,7 +90,7 @@ public class getfacebookfans implements PageProcessor{
 	@Override
 	public Site getSite() {
 		// TODO Auto-generated method stub
-		return Site.me().setSleepTime(2000);
+		return Site.me().setSleepTime(3000);
 	}
 	
 }
