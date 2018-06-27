@@ -34,20 +34,15 @@ import java.util.Date;
 public class Github_access implements PageProcessor{
 
 	public static void main(String[]args) {
-		gettokenlist();
-		
-	}
-	public static void  gettokenlist() {
-		Mysql ms=new Mysql();
 		Request request=new Request("https://api.github.com/authorizations");
 		request.addHeader("Authorization", "Basic bHliang6bHliang1NDcwOTQ4OGRo");
 
 		request.addHeader("Accept","application/vnd.github.hellcat-preview+json");
-		request.addHeader("User-Agen","Awesome-Octocat-App");
-		Spider.create(new Github_accessfromgithub()).addRequest(request).run();
-		return;
+		request.addHeader("User-Agen","Awesome-Octocat-App").setMethod("GET");
+		Spider.create(new Github_accessfromgithub()).addRequest(request).run();;
 		
 	}
+	
 	@Override
 	public Site getSite() {
 		// TODO Auto-generated method stub

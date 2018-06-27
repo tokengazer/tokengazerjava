@@ -20,7 +20,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -39,7 +38,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-public class Github_accessfromgithub implements PageProcessor{
+public class Github_CreateAccess implements PageProcessor{
 
 	public static void main(String[]args) {
 		Json html=new Page().getJson();
@@ -139,26 +138,8 @@ public class Github_accessfromgithub implements PageProcessor{
 			
 			System.out.print(li);
 		}
-		if(count<=25) {
-			left=25-count;
-		}
-		for(int i=0;i<left;i++) {
-			Request request=new Request("https://api.github.com/authorizations");
-			request.setMethod("POST");
-			request.addHeader("Authorization", "Basic bHliang6bHliang1NDcwOTQ4OGRo");
-			Map<Object,Object> nameValuePair =new HashMap<Object,Object>();
-			String[] t= {"admin:gpg_key","admin:org","admin:org_hook","admin:public_key","admin:repo_hook","delete_repo","gist","notifications","repo","user","write:discussion"};
-			nameValuePair.put("scopes", t);
-			Date d=new Date();
-			int rand=new Random().nextInt(100);
-			@SuppressWarnings("deprecation")
-			String name=d.getYear()+"l"+d.getMonth()+"y"+d.getDate()+"b"+d.getHours()+"j"+d.getMinutes()+"x"+d.getSeconds()+"l"+rand;
-			nameValuePair.put("note", "lybjx"+name);
-			System.out.print(JSON.toJSONString(nameValuePair));
-			request.setRequestBody(HttpRequestBody.json(JSON.toJSONString(nameValuePair), "UTF-8"));
-			Spider.create(new Github_CreateAccess()).addRequest(request).thread(1).run();
-		}
-		//System.out.print(list);
+		
 	}
+
 
 }
