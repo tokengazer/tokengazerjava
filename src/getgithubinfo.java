@@ -55,14 +55,14 @@ import static graphql.Scalars.GraphQLString;
 import static graphql.schema.GraphQLFieldDefinition.newFieldDefinition;
 import static graphql.schema.GraphQLObjectType.newObject;
 
-public class getgithubinfo implements PageProcessor{
+public class getgithubinfo extends GithubAccessTokenList implements PageProcessor{
 	private Site site = new Site().setRetryTimes(3).setSleepTime(100).setDomain("www.icorating.com");
 	public static void main(String[] args) {
 		
 		
 	}
 	public static void list() {
-		String sql="select id, Github_url from ico_Analysis where Github_url <> ''  and Github_url <>'https://github.com/' ";
+		String sql="select id, Github_url from ico_Analysis where Github_url <> ''  and Github_url <>'https://github.com/' and id=15";
 		String[]access_tokenlist= {"afc61616719a89cbdbed28cc32e93c9d9a93e6bf","87683e1fa2f3e8ccff66d61193b948a858135ea6","237919e8c6d885d559e4eca11de1f17877e90ea7","1d645462cc4205d099a6a09a03f1a35f9a40aacd","dca768ed31563a2de80e61b5ce224972c94d967a","d3c8d7c2c86d4687acbdc3deea96c5e63a87e280","fcedcd7967bd57fb1694866e26eb3de915e338a7","807ac8745da0c11b8d4faec02a3d6ef47612b8d7","643b845668a201695235fa2b8440a22620ca0869","deea6e0052c10297e3099868cca476f0d2b00231","2a2ed47aeef3e2754246eb89fb9d1d6a4dbba897","df196a1db556073db536b7d5142b1afd0d39fa0d","439849ac657d929dc79f3f9b5942a97d1dc6d46f","778d9a79c04f4755b279332859c4db244b10c97e","c2fbde240f1032c0cc361137cedbebee815d8e88","0976a41854430be48f2ac8267b6b6db400d43306","921b21fde0d1c635488f3e73ab608dc10cdf7669","7e74b3905cd24fc19e4ca06376cf12173333bbdb","923b5ed4340fca2e11bc10e1c53f18a8f339fc4e","225867cc8489a5b289daec388f2efef38a26c592","fdef8ec4e59f61238adb260b9e823dd03675ad2a","216063a05f488bf109411cf725421019fe773513","1633b743ccf24bdfcbe21c73e3299ae538fba556","03381daf9a4ce96a9ddfd4529680eedf6a166b03","2cb8bde0bdaeb0a5077e404f66f824159a9ba361"};
 
 		Mysql ms=new Mysql();

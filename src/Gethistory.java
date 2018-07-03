@@ -52,6 +52,7 @@ public  class Gethistory implements PageProcessor {
 			String volumn="";
 			String marketcap="";
 			String sql="";
+			String name=page.getRequest().getUrl().split("name=")[1];
 			for(Selectable tdlist:trlist.xpath("//td").nodes()) {
 				//datetime=tdlist.nodes().get(1).toString();
 				if(i==0) {
@@ -88,7 +89,7 @@ public  class Gethistory implements PageProcessor {
 			try {
 				Statement stat=null;
 				stat=con.createStatement();
-				sql="insert into history (name,datetime,openprice,highprice,lowprice,endprice,volumn,marketcap) values ('Enigma','"+datetime+"','"+openprice+"','"+highprice+"','"+lowprice+"','"+endprice+"','"+volumn+"','"+marketcap+"');";
+				sql="insert into history (name,datetime,openprice,highprice,lowprice,endprice,volumn,marketcap) values ('"+name+"','"+datetime+"','"+openprice+"','"+highprice+"','"+lowprice+"','"+endprice+"','"+volumn+"','"+marketcap+"');";
 				
 				stat.execute(sql);
 			} catch (SQLException e) {
