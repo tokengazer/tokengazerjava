@@ -5,10 +5,11 @@ import java.util.Map;
 import java.sql.*;
 
 public class GithubAccessTokenList {
-public static ArrayList Tokenlist;
+
 	
-	public static ArrayList getTokenlist() throws ClassNotFoundException {
-		if(Tokenlist.isEmpty()) {
+	public static String[] getTokenlist(){
+		String[] Tokenlist= new String[25];
+		//if(Tokenlist.isEmpty()==true) {
 			String sql="select token from github_tokenlist;";
 			Connection con=null;
 			String driver = "com.mysql.jdbc.Driver";
@@ -25,26 +26,26 @@ public static ArrayList Tokenlist;
 	        rs=stat.executeQuery(sql);
 	        ResultSetMetaData md=rs.getMetaData();
 	        int columnCount=md.getColumnCount();
+	        int i=0;
 	        while(rs.next()) {
-	        	Map<String,Object> rowData=new HashMap<String,Object>();
-	        	for(int i=1;i<columnCount;i++) {
-	        		rowData.put(md.getColumnName(i),rs.getObject(i));
-	        	}
-	        	Tokenlist.add(rowData);
+	        	System.out.print(rs.getString("token"));
+	        	Tokenlist[i]=rs.getString("token");
+	        	i++;
 	        }
-	        } catch(SQLException e) {
+	        System.out.println(Tokenlist);
+	        }
+	        catch(SQLException e) {
 	            e.printStackTrace();  
 	            }catch (Exception e) {
 	            e.printStackTrace();
 
 	        }
-	        
-		}
+	        return Tokenlist;
+		/*}else {
+		System.out.println(Tokenlist);
 		return Tokenlist;
+		}*/
 	}
 	
-	public static void setTokenlist(ArrayList tokenlist) {
-		Tokenlist = tokenlist;
-	}
-
+	
 }
