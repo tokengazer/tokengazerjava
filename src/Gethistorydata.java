@@ -25,8 +25,8 @@ public  class Gethistorydata implements PageProcessor {
 		//String url="https://api.telegram.org/bot"+token+"/getMessage?id=hashgraphnews";
 		//String[]list= {"bitcoin","ethereum","ripple","bitcoin-cash","eos","litecoin","stellar","cardano","iota","golem-network-tokens","enigma","rlc","sonm","elastic","gridcoin","foldingcoin","tether"};
 		//String[]list1= {"bitcoin","ethereum","XRP","bitcoin-cash","eos","litecoin","stellar","cardano","iota","golem","enigma","iExec RLC","sonm","elastic","gridcoin","FoldingCoin","Tether"};
-		String[]list= {"tether"};
-		String[]list1= {"Tether"};
+		String[]list= {"sonm"};
+		String[]list1= {"SONM"};
 		int i=0;
 		ArrayList<Request> list2=new ArrayList<Request>();
 		for(String li:list) {

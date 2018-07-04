@@ -1,3 +1,11 @@
+/**
+ * 20180704增加MVP字段
+ * 
+ * 
+ * */
+
+
+
 import java.util.List;
 
 import us.codecraft.webmagic.Page;
@@ -26,6 +34,15 @@ public class Icodropsdetail implements PageProcessor {
 		
 		String description=html.xpath("//div[@class='ico-description']/text()").toString().trim();
 		List<String> lilist=html.xpath("//div[@class='row list']").xpath("//li").all();
+		
+		List<String> MvpHtml=html.regex("MVP").all();
+		String MVP;
+		if(MvpHtml.size()==0) {
+		MVP="无";
+		}else {
+		MVP="有";
+		}
+		
 		Project pro=new Project();
 		pro.setIndustry(industry);
 		pro.setLogo(logo);
@@ -94,6 +111,7 @@ public class Icodropsdetail implements PageProcessor {
 		}else if(raisehtml.contains("OF")) {
 			String raisemoney=raisehtml.replace("OF <br>", "").split("\\(")[0].replaceAll(",", "");
 		}
+		pro.setMvp(MVP);
 		for(String linkstr:links) {
 			if(linkstr.contains("?utm_source=icodrops")) {
 				String website=linkstr;

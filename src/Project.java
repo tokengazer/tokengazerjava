@@ -1,3 +1,6 @@
+/***
+ * 20180704增加MVP
+ */
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
@@ -100,10 +103,16 @@ public class Project {
 	public String FundsAllocation;
 	public String AdditionalTokenEmission;
 	public String AvailableforTokenSale;
+	public String MVP;//是否有原型
 	
 	
 	
-	
+	public String getMVP() {
+		return MVP;
+	}
+	public void setMVP(String mVP) {
+		MVP = mVP;
+	}
 	public String getZHname() {
 		return ZHname;
 	}

@@ -1,3 +1,6 @@
+/**
+ * 20180704对Prestartdate，Preenddate在pro内的赋值进行修改
+ * */
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
@@ -50,10 +53,10 @@ public class icoratingdetail implements PageProcessor{
         	int i=0;
         	if(tr.contains("Pre-ICO start date")) {
         		String Prestartdate=(tr.replace("<td>Pre-ICO start date:</td>", "").split("<td>")[1]).split("</td>")[0];
-        		pro.setIco_start_time(Prestartdate);
+        		pro.setPrestartdate(Prestartdate);
         	}else if(tr.contains("Pre-ICO end date")) {
         		String Preenddate=(tr.replace("<td>Pre-ICO end date:</td>", "").split("<td>")[1]).split("</td>")[0];
-        		pro.setIco_end_time(Preenddate);
+        		pro.setPresaledate(Preenddate);
         	}else if(tr.contains("Pre-ICO Token Supply:")) {
         		String Preicotokensupply=(tr.replace("<td>Pre-ICO Token Supply:</td>", "").split("<td>")[1]).split("</td>")[0];
         		
@@ -107,6 +110,14 @@ public class icoratingdetail implements PageProcessor{
         	}else if(tr.contains("Other")) {
         		String Other=(tr.replace("<td>Other:</td>", "").split("<td>")[1]).split("</td>")[0];
         	}
+        	int MVPCount=html.regex("MVP").all().size();
+        	String MVP;
+        	if(MVPCount==0) {
+        		MVP="无";
+        	}else {
+        		MVP="有";
+        	}
+        	pro.setMVP(MVP);
         	/*if(tr.xpath("td/text()").nodes().get(0).toString().contains("ICO date")) {
         		String icodate=tr.xpath("td/text()").nodes().get(1).toString();
         	}else if(tr.xpath("td/text()").nodes().get(0).toString().contains("Product Type")) {
