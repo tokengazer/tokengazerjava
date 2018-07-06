@@ -25,12 +25,12 @@ public  class Gethistorydata implements PageProcessor {
 		//String url="https://api.telegram.org/bot"+token+"/getMessage?id=hashgraphnews";
 		//String[]list= {"bitcoin","ethereum","ripple","bitcoin-cash","eos","litecoin","stellar","cardano","iota","golem-network-tokens","enigma","rlc","sonm","elastic","gridcoin","foldingcoin","tether"};
 		//String[]list1= {"bitcoin","ethereum","XRP","bitcoin-cash","eos","litecoin","stellar","cardano","iota","golem","enigma","iExec RLC","sonm","elastic","gridcoin","FoldingCoin","Tether"};
-		String[]list= {"sonm"};
-		String[]list1= {"SONM"};
+		String[]list= {"firstblood"};
+		String[]list1= {"firstblood"};
 		int i=0;
 		ArrayList<Request> list2=new ArrayList<Request>();
 		for(String li:list) {
-			SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");//设置日期格式
+			SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");//
 			String da=df.format(new Date());
 			String url="https://coinmarketcap.com/currencies/"+li+"/historical-data/?start=20130428&end="+da+"&name="+list1[i];
 			Request request=new Request(url);
