@@ -1,3 +1,7 @@
+/*
+ * list()中去掉了ids的限制
+ * 
+ * **/
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
