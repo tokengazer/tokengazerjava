@@ -28,7 +28,7 @@ import org.jsoup.nodes.Element;
 public class icoratingdetail implements PageProcessor{
 	private Site site = new Site().setRetryTimes(3).setSleepTime(100).setDomain("www.icorating.com");
 	public static void main(String[] args) {
-		//Spider.create(new icoratingdetail()).addUrl("https://icorating.com/ico/casper-api/details/").run();
+		Spider.create(new icoratingdetail()).addUrl("https://icorating.com/ico/casper-api/").run();
 		
 	}
 
@@ -45,79 +45,199 @@ public class icoratingdetail implements PageProcessor{
 		//System.out.println(setcookie);
 		
 		//System.out.println(setcookie.get(0));
-        Selectable mainpage =  html.xpath("//div[@class='uk-section switcher-block-unchangeable']");
-        List<String> trlist= mainpage.xpath("tr").all();
-        //System.out.println(trlist);
+		List<Selectable> tablelist=html.xpath("//div[@class='c-card-info c-card-info--border-grey mb-brand']").nodes();
+		String Prestartdate="";
+		String Preenddate="";
+		String Presalesupply="";
+		String Icostartdate="";
+		String Icoenddate="";
+		String Icotokensupply="";
+		String Type="";
+		String Softcap="";
+		String Hardcap="";
+		String Icoraisedmoney="";
+		String ticker="";
+		String TokenType="";
+		String AdditionalTokenEmission="";
+		String AcceptedCurrencies="";
+		String Tokendistribution="";
+		String BonusProgram="";
+		String FundsAllocation="";
+		String FacebookUrl="";
+		String TwitterUrl="";
+		String GithubUrl="";
+		String TelegramUrl="";
+		String LinkedUrl="";
+		String TokenpriceinUSD="";
+		String MVP="";
+		String Whitepaper="";
+		String logo="https://icorating.com/"+html.xpath("//div[@class='o-media c-card-media mt40 mb40'").toString().split("src=\"")[1].split("\"")[0];
+		String Industry=html.xpath("//p[@class='c-card-media__status c-card-media__status--live']").toString().replace("<p class=\"c-card-media__status c-card-media__status--live\">", "").replace("</p>", "").trim();
+		String Icoraisemoney=html.xpath("//p[@class='c-card-info__goal']").toString().replace("<p class=\"c-card-info__goal\">", "").replace("</p>", "").split("<")[0];
+		String Description=html.xpath("//div[@class='mb15'").toString().replace("<p>", "").replace("</p>", "");
+		String website=html.xpath("//a[@class='c-button c-button--teal c-button--block mt15 cp'").toString().split("href=\"")[1].split("\"")[0];
+        int i1=0;
+        List<Selectable> PriceHtml=html.xpath("//table[@class='c-card-info__table']").xpath("//tr").nodes();
+        
+        List<Selectable> SocialHtml=html.xpath("//div[@class='c-social-icons c-social-icons--grey c-social-icons--center mb15 mt10']").xpath("//a").nodes();
+    	
+    	for(Selectable tb:tablelist) {
+    		//有些项目中有presale ，有些没有，多个table共用一个class 名
+    		if(tb.toString().contains("Pre-sale")) {
+    				List<Selectable> tr1=tb.xpath("//tr").nodes();
+    				for(Selectable td:tr1) {
+    					if(td.toString().contains("Pre-sale start date")) {
+    						Prestartdate=td.xpath("//td[@class='c-info-table__cell tar']/text()").toString();
+    						System.out.print(3);
+    					}
+    					if(td.toString().contains("Pre-sale end date")) {
+    						Preenddate=td.xpath("//td[@class='c-info-table__cell tar']/text()").toString();
+    						System.out.print(3);
+    					}
+    					if(td.toString().contains("Pre-sale token supply")) {
+    						Presalesupply=td.xpath("//td[@class='c-info-table__cell tar']/text()").toString();
+    						System.out.print(3);
+    					}
+    					System.out.println(td.toString());
+    					System.out.println(4);
+    				}
+    				
+    		}
+    		else if(tb.xpath("//caption[@class='c-info-table__caption']").toString().contains("ICO")) {
+    			List<Selectable> tr1=tb.xpath("//tr").nodes();
+    			for(Selectable td:tr1) {
+					if(td.toString().contains("ICO start date")) {
+						Icostartdate=td.xpath("//td[@class='c-info-table__cell tar']/text()").toString();
+						
+					}
+					if(td.toString().contains("ICO end date")) {
+						Icoenddate=td.xpath("//td[@class='c-info-table__cell tar']/text()").toString();
+					}
+					if(td.toString().contains("ICO token supply")) {
+						Icotokensupply=td.xpath("//td[@class='c-info-table__cell tar']/text()").toString();
+					}
+					if(td.toString().contains("Soft cap")) {
+						Softcap=td.xpath("//td[@class='c-info-table__cell tar']/text()").toString();
+					}
+					if(td.toString().contains("Hard cap size")) {
+						Hardcap=td.xpath("//td[@class='c-info-table__cell tar']/text()").toString();
+					}
+					if(td.toString().contains("Raised")) {
+						Icoraisedmoney=td.xpath("//td[@class='c-info-table__cell tar']/text()").toString();
+					}
+					
+				}		
+    		}
+    		
+    	}
+    	Selectable tokendetailhtml=html.xpath("//div[@class='c-card-info c-card-info--border-grey']");
+			List<Selectable> tr1=tokendetailhtml.xpath("//tr").nodes();
+			for(Selectable td:tr1) {
+				if(td.toString().contains("Ticker")) {
+					ticker=td.xpath("//td[@class='c-info-table__cell remove-indents tar']/text()").toString();
+					
+				}
+				if(td.toString().contains("Type")) {
+					Type=TokenType=td.xpath("//td[@class='c-info-table__cell remove-indents tar']/text()").toString();
+				}
+				if(td.toString().contains("Additional Token Emission")) {
+					AdditionalTokenEmission=td.xpath("//td[@class='c-info-table__cell remove-indents tar']/text()").toString();
+				}
+				if(td.toString().contains("Accepted Currencies")) {
+					AcceptedCurrencies=td.xpath("td[@class='c-info-table__cell remove-indents tar']").toString().replace("<td class=\"c-info-table__cell remove-indents tar\"> <p>", "").replace("</td>", "").replace("</p> <p>", ",").replace("<p>", "").replace("</p>", "");
+				}
+				if(td.toString().contains("Token distribution")) {
+					Tokendistribution=td.xpath("//td[@class=\"c-info-table__cell tar remove-indents\"]").toString().replace("<td class=\"c-info-table__cell tar remove-indents\"> <p>", "").replace("</td>", "").replace("<br>", ",");
+				}
+				if(td.toString().contains("Raised")) {
+					Icoraisedmoney=td.xpath("//td[@class='c-info-table__cell remove-indents tar']/text()").toString();
+				}
+				if(td.toString().contains("Bonus Program")) {
+					BonusProgram=td.xpath("//td[@class='c-info-table__cell remove-indents tar']/text()").toString();
+				}
+				if(td.toString().contains("Funds allocation")) {
+					FundsAllocation=td.xpath("//td[@class='c-info-table__cell remove-indents tar']/text()").toString();
+				}
+				if(td.toString().contains("Raised")) {
+					Icoraisedmoney=td.xpath("//td[@class='c-info-table__cell remove-indents tar']/text()").toString();
+				}
+				
+			}		
+		
+    	
+    	//获取社媒部分
+    	
+    	for(Selectable socialtr:SocialHtml) {
+    		Selectable links=socialtr.links();
+    		if(socialtr.toString().contains("facebook")) {
+    			FacebookUrl=socialtr.links().get(); 
+    		}
+    		if(socialtr.toString().contains("twitter")) {
+    			TwitterUrl=socialtr.links().get(); 
+    		}
+    		if(socialtr.toString().contains("linkedin")) {
+    			LinkedUrl=socialtr.links().get(); 
+    		}
+    		if(socialtr.toString().contains("github")) {
+    			GithubUrl=socialtr.links().get(); 
+    		}
+    		if(socialtr.toString().contains("telegram")||socialtr.toString().contains("t.me")) {
+    			TelegramUrl=socialtr.links().get(); 
+    		}
+    	}
+    	//获取price mvp等部分
+    	
+    	List<Selectable> tr2=PriceHtml.get(0).nodes();
+    	for(Selectable tr3:tr2) {
+    		if(tr3.toString().contains("Price")) {
+    			TokenpriceinUSD=tr3.toString().split("=")[1].split("USD")[0];
+    		}
+    		if(tr3.toString().contains("MVP")) {
+    			MVP=tr3.xpath("td[@class='c-card-info__cell tar']").toString().replace("<td class=\"c-card-info__cell tar\">", "").replace("</td>", "");
+    			if(MVP.contains("no")) {
+    				MVP="无";
+    			}
+    			else {
+    				MVP="有";
+    			}
+    		}
+    		if(tr3.toString().contains("Whitepaper")) {
+    			Whitepaper=tr3.links().get();
+    		}
+    	}
+    	
         Project pro=new Project();
-        for(String tr:trlist) {
-        	int i=0;
-        	if(tr.contains("Pre-ICO start date")) {
-        		String Prestartdate=(tr.replace("<td>Pre-ICO start date:</td>", "").split("<td>")[1]).split("</td>")[0];
-        		pro.setPrestartdate(Prestartdate);
-        	}else if(tr.contains("Pre-ICO end date")) {
-        		String Preenddate=(tr.replace("<td>Pre-ICO end date:</td>", "").split("<td>")[1]).split("</td>")[0];
-        		pro.setPresaledate(Preenddate);
-        	}else if(tr.contains("Pre-ICO Token Supply:")) {
-        		String Preicotokensupply=(tr.replace("<td>Pre-ICO Token Supply:</td>", "").split("<td>")[1]).split("</td>")[0];
-        		
-        	}else if(tr.contains("ICO start date")) {
-        		String Icostartdate=(tr.replace("<td>ICO start date:</td>", "").split("<td>")[1]).split("</td>")[0];
-        		pro.setIco_start_time(Icostartdate);
-        	}else if(tr.contains("ICO end date")) {
-        		String Icoenddate=(tr.replace("<td>ICO end date:</td>", "").split("<td>")[1]).split("</td>")[0];
-        		pro.setIco_end_time(Icoenddate);
-        	}else if(tr.contains("ICO Token Supply")) {
-        		String Icotokensupply=(tr.replace("<td>ICO Token Supply:</td>", "").split("<td>")[1]).split("</td>")[0];
-        		pro.setICO_Total_Amount(Icotokensupply);
-        	}else if(tr.contains("Soft cap")) {
-        		String Softcap=(tr.replace("<td>Soft cap:</td>", "").split("<td>")[1]).split("</td>")[0];
-        	}else if(tr.contains("Hard cap")) {
-        		String Hardcap=(tr.replace("<td>Hard cap:</td>", "").split("<td>")[1]).split("</td>")[0];
-        		pro.setICO_HardCap(Hardcap);
-        	}else if(tr.contains("Type")) {
-        		String Type=(tr.replace("<td>Type:</td>", "").split("<td>")[1]).split("</td>")[0];
-        		pro.setPlatform(Type);
-        	}else if(tr.contains("Hard cap")) {
-        		String Softcap=(tr.replace("<td>Hard cap:</td>", "").split("<td>")[1]).split("</td>")[0];
-        	}else if(tr.contains("Token Standard")) {
-        		String Tokenstandard=(tr.replace("<td>Token Standard:</td>", "").split("<td>")[1]).split("</td>")[0];
-        		pro.setTokenStandard(Tokenstandard);
-        	}else if(tr.contains("Additional Token Emission")) {
-        		String AdditionalTokenEmission=(tr.replace("<td>Additional Token Emission:</td>", "").split("<td>")[1]).split("</td>")[0];
-        		pro.setAdditionalTokenEmission(AdditionalTokenEmission);
-        	}else if(tr.contains("Token price in USD")) {
-        		String TokenpriceinUSD=(tr.replace("<td>Token price in USD:</td>", "").split("<td>")[1]).split("</td>")[0];
-        		pro.setIco_Price_Usd(TokenpriceinUSD);
-        	}else if(tr.contains("Accepted Currencies")) {
-        		String AcceptedCurrencies=(tr.replace("<td>Accepted Currencies:</td>", "").split("<td>")[1]).split("</td>")[0];
-        		pro.setAcceptedCurrencies(AcceptedCurrencies);
-        	}else if(tr.contains("Bonus Program")) {
-        		String BonusProgram=(tr.replace("<td>Bonus Program:</td>", "").split("<td>")[1]).split("</td>")[0];
-        		
-        	}else if(tr.contains("Token distribution")) {
-        		String Tokendistribution=(tr.replace("<td>Token distribution:</td>", "").split("<td>")[1]).split("</td>")[0].replaceAll("<p .*?>", "\r\n").replaceAll("<br\\s*/?>", "\r\n").replaceAll("<p>", "").replaceAll("</p>", "");
-        		System.out.println(Tokendistribution);
-        		pro.setTokenDistribution(Tokendistribution);
-            }else if(tr.contains("ICO Platform")) {
-        		String ICOPlatform=(tr.replace("<td>ICO Platform:</td>", "").split("<td>")[1]).split("</td>")[0];
-        		pro.setPlatform(ICOPlatform);
-        	}else if(tr.contains("Bounty")) {
-        		String Bounty=(tr.replace("<td>Bounty:</td>", "").split("<td>")[1]).split("</td>")[0];
-        	}else if(tr.contains("Social Media")) {
-        		String SocialMedia=(tr.replace("<td>Social Media:</td>", "").split("<td>")[1]).split("</td>")[0];
-        	}else if(tr.contains("Bitcointalk Signature Campaign:")) {
-        		String BitcointalkSignatureCampaign=(tr.replace("<td>Bitcointalk Signature Campaign:</td>", "").split("<td>")[1]).split("</td>")[0];
-        	}else if(tr.contains("Other")) {
-        		String Other=(tr.replace("<td>Other:</td>", "").split("<td>")[1]).split("</td>")[0];
-        	}
-        	int MVPCount=html.regex("MVP").all().size();
-        	String MVP;
-        	if(MVPCount==0) {
-        		MVP="无";
-        	}else {
-        		MVP="有";
-        	}
-        	pro.setMVP(MVP);
+        
+        pro.setPrestartdate(Prestartdate);
+        pro.setPresaledate(Preenddate);
+        pro.setIco_start_time(Icostartdate);
+        pro.setIco_end_time(Icoenddate);
+        pro.setICO_Total_Amount(Icotokensupply);
+        pro.setICO_HardCap(Hardcap);
+        pro.setPlatform(Type);
+        //pro.setTokenStandard(Tokenstandard);
+        pro.setAdditionalTokenEmission(AdditionalTokenEmission);
+        pro.setIco_Price_Usd(TokenpriceinUSD);
+        pro.setAcceptedCurrencies(AcceptedCurrencies);
+        pro.setTokenDistribution(Tokendistribution);
+        pro.setMVP(MVP);
+        pro.setDataSource("icorating");
+        pro.setDescription(Description);
+        pro.setFacebookurl(FacebookUrl);
+        pro.setFundsAllocation(FundsAllocation);
+        pro.setGithuburl(GithubUrl);
+        pro.setICO_Raise_money(Icoraisemoney);
+        pro.setICO_Raised_money(Icoraisedmoney);
+        pro.setIndustry(Industry);
+        pro.setLinkedin(LinkedUrl);
+        pro.setLogo(logo);
+        pro.setMVP(MVP);
+        pro.setTelegramurl(TelegramUrl);
+        pro.setTwitterurl(TwitterUrl);
+        pro.setWebsite(website);
+        pro.setWhitepaper(Whitepaper);
+        	
+        	
         	/*if(tr.xpath("td/text()").nodes().get(0).toString().contains("ICO date")) {
         		String icodate=tr.xpath("td/text()").nodes().get(1).toString();
         	}else if(tr.xpath("td/text()").nodes().get(0).toString().contains("Product Type")) {
@@ -133,28 +253,19 @@ public class icoratingdetail implements PageProcessor{
         		String whitepaper=tr.xpath("td").links().toString();
         	}*/
         }
+        
+        
+
+    	
+    	
        
-        }
-        //List<String> nameList =selectable1.nodes().get(0).$("<tr").$("td");
-        String[] jsdkf = new String[56];
-        String[] arr=new String[56];
-//        if(questionList != null && questionList.size() > 1)
-//        {
-//            //i=0鏄垪鍚嶇О锛屾墍浠浠�1寮�濮�
-//            for( int i = 1 ; i < questionList.size(); i++)
-//            {
-//            	String[] list = new String[56];
-//            	String name=questionList.get(i).regex("<td>",1);
-//            	list[1]="cctv";
-//            	arr[i]=list[1];
-//            }
-//        }
+       
 	
 
 	@Override
 	public Site getSite() {
 		// TODO Auto-generated method stub
-		return Site.me();
+		return Site.me().setTimeOut(20000);
 	}
 	
 }

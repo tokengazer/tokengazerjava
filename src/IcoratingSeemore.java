@@ -141,7 +141,7 @@ public class IcoratingSeemore implements PageProcessor{
 		     if (CollectionUtils.isNotEmpty(ids)) {
 		         for (String id : ids) {
 		        	 if(id!="https://icorating.com/ico/load/"||id!="https://icorating.com/ico/"){
-		        		 Spider.create(new icoratingmainpage()).addUrl(id).thread(5).run();
+		        		 //Spider.create(new icoratingmainpage()).addUrl(id).thread(5).run();
 		        		 Spider.create(new icoratingdetail()).addUrl(id+"details/").thread(5).run();
 		        	 }
 		         }
