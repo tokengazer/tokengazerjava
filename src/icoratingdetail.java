@@ -28,7 +28,7 @@ import org.jsoup.nodes.Element;
 public class icoratingdetail implements PageProcessor{
 	private Site site = new Site().setRetryTimes(3).setSleepTime(100).setDomain("www.icorating.com");
 	public static void main(String[] args) {
-		Spider.create(new icoratingdetail()).addUrl("https://icorating.com/ico/casper-api/").run();
+		//Spider.create(new icoratingdetail()).addUrl("https://icorating.com/ico/casper-api/").run();
 		
 	}
 
