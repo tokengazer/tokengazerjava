@@ -1,0 +1,61 @@
+import us.codecraft.webmagic.Spider;
+import us.codecraft.webmagic.Page;
+import us.codecraft.webmagic.Request;
+import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.processor.PageProcessor;
+import us.codecraft.webmagic.scheduler.BloomFilterDuplicateRemover;
+import us.codecraft.webmagic.selector.Html;
+import us.codecraft.webmagic.selector.Selectable;
+import java.io.*;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.message.BasicNameValuePair;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
+public class IcodropsWhitelist implements PageProcessor{
+	private Site site = new Site().setRetryTimes(3).setSleepTime(100).setDomain("www.icorating.com");
+	public static void main(String[] args) {
+		start();
+		
+	}
+	public static void start() {
+		Spider.create(new IcodropsWhitelist()).addUrl("https://icodrops.com/whitelist/").run();
+		
+	}
+	
+
+	@Override
+	public void process(Page page) {
+		// TODO Auto-generated method stub
+		Html html = page.getHtml();
+		//System.out.println(page.getHeaders());
+		Selectable selectable=html.xpath("//div[@id='whitecol'");
+		List<String> links=selectable.links().regex("(https://icodrops\\.com/(\\w+)/.*)").all();
+		ArrayList<Request> list=new ArrayList<Request>();
+       for(String url:links) {
+    	   Request request=new Request(url);
+    	   list.add(request);
+    	   //Spider.create(new Icodropsdetail()).addUrl(url).run();
+       }
+       Request[] strings = new Request[list.size()];
+       list.toArray(strings);
+       Spider.create(new Icodropsdetail()).addRequest(strings).thread(10).run();
+	}
+
+	@Override
+	public Site getSite() {
+		// TODO Auto-generated method stub
+		return Site.me();
+	}
+	
+}
