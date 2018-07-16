@@ -110,7 +110,7 @@ public  class GetFacebookTwitterdatafromcoingecko implements PageProcessor {
 	 * @return 
 	 * */
 	public static boolean list() {
-		String sql="select id,name from ico_Analysis where id<=498;";
+		String sql="select id,name from ico_Analysi;";
 		Connection con=null;
 		String driver = "com.mysql.jdbc.Driver";
         //URL鎸囧悜瑕佽闂殑鏁版嵁搴撳悕mydata
