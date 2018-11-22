@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
 public  class Feixiaohao implements PageProcessor{
 	public static void main(String[] args) throws SQLException {
 		//Spider.create(new Feixiaohao()).addUrl("https://coinmarketcap.com/zh/all/views/all/").run();
@@ -29,7 +30,7 @@ public  class Feixiaohao implements PageProcessor{
 		Html html = page.getHtml();
 		Selectable selectable=html;
 		Selectable tablelist=selectable.xpath("//tbody");
-		Mysql mysql=new Mysql();
+		//Mysql mysql=new Mysql();
 		
 		Connection con = null;
 		int res1=-2;

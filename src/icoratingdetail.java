@@ -29,7 +29,7 @@ public class icoratingdetail implements PageProcessor{
 	private Site site = new Site().setRetryTimes(3).setSleepTime(100).setDomain("www.icorating.com");
 	public static void main(String[] args) {
 		//Spider.create(new icoratingdetail()).addUrl("https://icorating.com/ico/casper-api/").run();
-		
+		Spider.create(new icoratingdetail()).addUrl("https://icorating.com/ico/stonetoken-st/").run();
 	}
 
 
@@ -237,7 +237,7 @@ public class icoratingdetail implements PageProcessor{
         pro.setWebsite(website);
         pro.setWhitepaper(Whitepaper);
         	
-        	
+        	System.out.println(1);
         	/*if(tr.xpath("td/text()").nodes().get(0).toString().contains("ICO date")) {
         		String icodate=tr.xpath("td/text()").nodes().get(1).toString();
         	}else if(tr.xpath("td/text()").nodes().get(0).toString().contains("Product Type")) {

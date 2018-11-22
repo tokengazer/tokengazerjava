@@ -35,7 +35,7 @@ import java.util.Date;
 public class gettwitterfans implements PageProcessor{
 	private Site site = new Site().setRetryTimes(3).setSleepTime(100).setDomain("www.icorating.com");
 	public static void main(String[] args) {
-		//Spider.create(new gettwitterfans()).addUrl("https://twitter.com/bitcoin").run();;
+		Spider.create(new gettwitterfans()).addUrl("https://twitter.com/bitcoin").run();;
 		//list();
 	}
 	

@@ -30,18 +30,18 @@ public  class Coinmarket implements PageProcessor{
 		Mysql mysql=new Mysql();
 		Connection con = null ;
 		int res1=-2;
-        //驱动程序名
-        String driver = "com.mysql.jdbc.Driver";
-        //URL指向要访问的数据库名mydata
-        String url = "jdbc:mysql://13.114.134.239:3306/app_tokenworm";
-        //MySQL配置时的用户名
+        //椹卞姩绋嬪簭鍚�
+		String driver = "com.mysql.jdbc.Driver";
+
+        String sqlurl = "jdbc:mysql://rm-bp1kq68i5h4493twvzo.mysql.rds.aliyuncs.com:3306/app_tokenworm";
+
         String user = "lybjx";
-        //MySQL配置时的密码
-        String password = "123456";
+
+        String password = "Lybjx54709488dh";
         String insertsql="";
         PreparedStatement pstmt =null;
         try {
-			con = DriverManager.getConnection(url,user,password);
+			con = DriverManager.getConnection(sqlurl,user,password);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -100,27 +100,27 @@ public  class Coinmarket implements PageProcessor{
 			String time1=now.get(Calendar.YEAR)+"-"+month+"-"+now.get(Calendar.DAY_OF_MONTH);
 			//String sql="select * from coinmarketdata where Name='"+name+"'and Updatedate='"+time1+"';";
 			ResultSet rs=null;
-	        //遍历查询结果集
+	        //閬嶅巻鏌ヨ缁撴灉闆�
 	        //try {
 	        	
-	            //加载驱动程序
+	            //鍔犺浇椹卞姩绋嬪簭
 	            try {
 					Class.forName(driver);
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-	            //1.getConnection()方法，连接MySQL数据库！！
+	            //1.getConnection()鏂规硶锛岃繛鎺ySQL鏁版嵁搴擄紒锛�
 	            //con = DriverManager.getConnection(url,user,password);
-	            //2.创建statement类对象，用来执行SQL语句！！
+	            //2.鍒涘缓statement绫诲璞★紝鐢ㄦ潵鎵цSQL璇彞锛侊紒
 	            
 	            //Statement statement = con.createStatement();
 	            int rowcount =0;
 
 	            //ResultSet re = statement.executeQuery(sql);
-	            //re.last();      //直接执行跳到结果集的最后一行
+	            //re.last();      //鐩存帴鎵ц璺冲埌缁撴灉闆嗙殑鏈�鍚庝竴琛�
 
-	            rowcount =0;//= re.getRow();   //这一句就能得到结果集的行数
+	            rowcount =0;//= re.getRow();   //杩欎竴鍙ュ氨鑳藉緱鍒扮粨鏋滈泦鐨勮鏁�
 //	            re.beforeFirst(); 
 	            
 	            if(rowcount==0) {

@@ -1,5 +1,10 @@
 import java.io.*;
 import java.sql.Array;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,22 +30,42 @@ public  class Gethistorydata implements PageProcessor {
 		//String url="https://api.telegram.org/bot"+token+"/getMessage?id=hashgraphnews";
 		//String[]list= {"bitcoin","ethereum","ripple","bitcoin-cash","eos","litecoin","stellar","cardano","iota","golem-network-tokens","enigma","rlc","sonm","elastic","gridcoin","foldingcoin","tether"};
 		//String[]list1= {"bitcoin","ethereum","XRP","bitcoin-cash","eos","litecoin","stellar","cardano","iota","golem","enigma","iExec RLC","sonm","elastic","gridcoin","FoldingCoin","Tether"};
-		String[]list= {"firstblood"};
-		String[]list1= {"firstblood"};
-		int i=0;
-		ArrayList<Request> list2=new ArrayList<Request>();
-		for(String li:list) {
-			SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");//
-			String da=df.format(new Date());
-			String url="https://coinmarketcap.com/currencies/"+li+"/historical-data/?start=20130428&end="+da+"&name="+list1[i];
-			Request request=new Request(url);
-			list2.add(request);
-			//Spider.create(new Gethistory()).addUrl(url).run();
-			i++;
+		String[]list= {"sonm"};
+		String[]list1= {"sonm"};
+		Connection con=null;
+		String driver = "com.mysql.jdbc.Driver";
+
+        String sqlurl = "jdbc:mysql://localhost:3306/tokengazer";
+
+        String user = "tokengazer";
+        Statement stat=null;
+        String password = "Token123";
+        String sql1="select ticker,name  from historyname where id>50 and Ticker='EOS'";
+        ResultSet rs=null;
+        try {
+			con=DriverManager.getConnection(sqlurl, user, password);
+			stat=con.createStatement();
+			rs=stat.executeQuery(sql1);
+			int i=0;
+			ArrayList<Request> list2=new ArrayList<Request>();
+			while(rs.next()) {
+				SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");//
+				String da=df.format(new Date());
+				String url="https://coinmarketcap.com/currencies/"+rs.getString("name")+"/historical-data/?start=20170101&end="+da+"&name="+rs.getString("name")+"&ticker="+rs.getString("ticker");
+				Request request=new Request(url);
+				list2.add(request);
+				//Spider.create(new Gethistory()).addUrl(url).run();
+				//i++;
+			}
+			Request[] strings = new Request[list2.size()];
+	        list2.toArray(strings);
+	        Spider.create(new Gethistory()).addRequest(strings).thread(2).run();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		Request[] strings = new Request[list2.size()];
-        list2.toArray(strings);
-        Spider.create(new Gethistory()).addRequest(strings).thread(30).run();
+        
+		
 		//String url="https://coinmarketcap.com/currencies/enigma-project/historical-data/?start=20130428&end=20180621";
 		
 	}

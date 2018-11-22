@@ -15,13 +15,13 @@ public  class GetDataFromEtherscan implements PageProcessor{
 		int i=1;
 		ArrayList<Request> Li=new ArrayList<Request>();
 		for(i=1;i<=20;i++) {
-			String url="https://etherscan.io/token/generic-tokenholders2?a=0xa74476443119A942dE498590Fe1f2454d7D4aC0d&s=1E%2b27&p="+i;
+			String url="https://etherscan.io/token/generic-tokenholders2?a=0xaf30d2a7e90d7dc361c8c4585e9bb7d2f6f15bc7&p="+i;
 			Request request=new Request(url);
 			Li.add(request);
 		}
 		Request[] strings = new Request[Li.size()];
         Li.toArray(strings);
-        Spider.create(new GetDataFromETH()).addRequest(strings).thread(2).run();
+        Spider.create(new GetDataFromETH()).addRequest(strings).thread(5).run();
 	}
 	@Override
 	public void process(Page page) {

@@ -66,7 +66,7 @@ public  class GetDataFromETH implements PageProcessor{
 	        	y++;
         	}
         	int rank1=Integer.parseInt(rank.trim());
-        	String sql="insert into etherscan_draw (pid,address,rank) values(9999999,'"+address+"',"+rank1+"); ";
+        	String sql="insert into etherscan_draw (pid,address,rank) values(777777,'"+address+"',"+rank1+"); ";
         	System.out.println(sql);
         	try {
 				stat.addBatch(sql);

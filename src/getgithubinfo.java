@@ -195,7 +195,7 @@ public class getgithubinfo extends GithubAccessTokenList implements PageProcesso
 	        ArrayList<Request> list1=new ArrayList<Request>();
 	        
 	        //璁＄畻forks绛夋暟鎹�
-	        JsonPathSelector ForksDataPath = new JsonPathSelector("$.[*].forks");
+	        JsonPathSelector ForksDataPath = new JsonPathSelector("$.[*].forks_count");
 	        JsonPathSelector UpdatetimeDataPath = new JsonPathSelector("$.[*].updated_at");
 	        List<String> Urllist=new JsonPathSelector("$.[*].url").selectList(text);
 	        List<String> Updatetimelist=UpdatetimeDataPath.selectList(text);
@@ -230,7 +230,7 @@ public class getgithubinfo extends GithubAccessTokenList implements PageProcesso
 	            DefaultHttpClient httpclient = new DefaultHttpClient();
 	            try {
 	                HttpGet httpget = new HttpGet(url1);
-	                httpget.addHeader("Authorization", "token "+token1);
+	                httpget.addHeader("Authorization", "token bd1c92b45d8ee5fa1bcabb4c8657acfcc9090894");
 	                httpget.addHeader("Accept","application/vnd.github.hellcat-preview+json");
 	                httpget.addHeader("User-Agen","Awesome-Octocat-App");
 	                HttpResponse response = null;
@@ -303,7 +303,7 @@ public class getgithubinfo extends GithubAccessTokenList implements PageProcesso
 	        	hm.put("query",data_string);
 	        	String url2 = "https://api.github.com/graphql?anon=1000";
 	        	
-	        	request1.addHeader("Authorization","token "+ token).addHeader("Accept", "application/vnd.github.hellcat-preview+json").addHeader("User-Agent", "Awesome-Octocat-App");
+	        	request1.addHeader("Authorization","token  bd1c92b45d8ee5fa1bcabb4c8657acfcc9090894").addHeader("Accept", "application/vnd.github.hellcat-preview+json").addHeader("User-Agent", "Awesome-Octocat-App");
             	request1.setMethod(HttpConstant.Method.POST);
             	request1.setRequestBody(HttpRequestBody.json(data_string,"UTF-8"));
             	list1.add(request1);

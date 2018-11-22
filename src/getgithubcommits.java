@@ -81,7 +81,7 @@ public class getgithubcommits extends GithubAccessTokenList implements PageProce
             ArrayList<Request> list=new ArrayList<Request>();
             while(rs.next()){//遍历结果集
             	int round=new Random().nextInt(25);  
-            	String token=access_tokenlist[round];
+            	String token="bd1c92b45d8ee5fa1bcabb4c8657acfcc9090894";String a=access_tokenlist[round];
             	//System.out.println(token);
             	String Github_url=rs.getString("Github_url").replace(" ", "").replace("http://github.com/", "https://github.com/");
             	String baseurl=Github_url.replace("https://github.com/", "");//str_replace(",","",$list[$k]['Github_url']);
@@ -93,7 +93,7 @@ public class getgithubcommits extends GithubAccessTokenList implements PageProce
             	baseurl=baseurl.replace(",", "");
             	baseurl = "https://api.github.com/users/"+baseurl+"/repos";
             	Request request = new Request(baseurl.replace("//repos", "/repos"));
-            	request.addHeader("Authorization","token "+ token).addHeader("Accept", "application/vnd.github.hellcat-preview+json").addHeader("User-Agent", "Awesome-Octocat-App");
+            	request.addHeader("Authorization","token bd1c92b45d8ee5fa1bcabb4c8657acfcc9090894").addHeader("Accept", "application/vnd.github.hellcat-preview+json").addHeader("User-Agent", "Awesome-Octocat-App");
             	list.add(request);   
             }
             Request[] strings = new Request[list.size()];
@@ -149,7 +149,8 @@ public class getgithubcommits extends GithubAccessTokenList implements PageProce
 		//int i=0;
 		access_tokenlist=tokenlist;
 		int round=new Random().nextInt(25);  
-    	String token=access_tokenlist[round];
+    	String token="bd1c92b45d8ee5fa1bcabb4c8657acfcc9090894";
+    	String a=access_tokenlist[round];
 		String pro=url.replace("https://api.gethub.com/users/", "").replace("/repos", "");
 		int code=page.getStatusCode();
 		Html html = page.getHtml();
